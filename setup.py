@@ -1,5 +1,4 @@
 #basic setup imports
-import email
 from logging import basicConfig
 from setuptools import setup , find_packages
 from typing import List
