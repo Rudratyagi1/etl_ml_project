@@ -1,8 +1,11 @@
-#imports
+# basic imports
 import sys
+
+
+#internal imports
 from network_security.logging.logger import logging
 
-
+#custom exception class
 class NetworkSecurityException(Exception):
     def __init__(self,error_message,error_details):
         self.error_message = error_message
