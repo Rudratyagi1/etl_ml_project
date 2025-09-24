@@ -87,3 +87,69 @@ class DataIngestionConfig:
         # MongoDB database name
         self.database_name: str = training_pipeline.DATA_INGESTION_DATABASE_NAME
         
+
+
+# ================================
+# ⚙️ Data Validation Configuration
+# ================================
+
+
+
+class DataValidationConfig:
+    """
+    Configuration class for Data Validation stage of the pipeline.
+    Holds paths for valid/invalid train/test data and data drift reports.
+    """
+
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        
+            # Root directory for all data validation artifacts
+            self.data_validation_dir: str = os.path.join(
+                training_pipeline_config.artifact_dir,
+                training_pipeline.DATA_VALIDATION_DIR_NAME
+            )
+
+            # Directory to store validated data
+            self.valid_data_dir: str = os.path.join(
+                self.data_validation_dir,
+                training_pipeline.DATA_VALIDATION_VALID_DIR
+            )
+
+            # Directory to store invalid/rejected data
+            self.invalid_data_dir: str = os.path.join(
+                self.data_validation_dir,
+                training_pipeline.DATA_VALIDATION_INVALID_DIR
+            )
+
+            # File paths for valid train/test datasets
+            self.valid_train_file_path: str = os.path.join(
+                self.valid_data_dir,
+                training_pipeline.TRAIN_FILE_NAME
+            )
+            self.valid_test_file_path: str = os.path.join(
+                self.valid_data_dir,
+                training_pipeline.TEST_FILE_NAME
+            )
+
+            # File paths for invalid train/test datasets
+            self.invalid_train_file_path: str = os.path.join(
+                self.invalid_data_dir,
+                training_pipeline.TRAIN_FILE_NAME
+            )
+            self.invalid_test_file_path: str = os.path.join(
+                self.invalid_data_dir,
+                training_pipeline.TEST_FILE_NAME
+            )
+
+            # Path to store the data drift report
+            self.drift_report_file_path: str = os.path.join(
+                self.data_validation_dir,
+                training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,
+                training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME
+            )
+
+      
+
+
+
+    

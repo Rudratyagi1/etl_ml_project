@@ -26,6 +26,7 @@ FILE_NAME: str = "phisingData.csv"  # Ensures consistent file reference across m
 TRAIN_FILE_NAME: str = "train.csv"  # Saved after splitting raw dataset
 TEST_FILE_NAME: str = "test.csv"    # Saved after splitting raw dataset
 
+SCHEMA_FILE_PATH = os.path.join("data_schema" , "schema.yaml")
 
 
 
@@ -47,4 +48,23 @@ DATA_INGESTION_INGESTED_DIR: str = "ingested"              # Folder to store tra
 DATA_INGESTION_TRAIN_TEST_SPLIT_RATION: float = 0.2        # 20% test data, 80% train data
 # Why? Ensures consistency across runs and reproducibility in experiments
 
+
+# ================================
+# 💾 Data Validation Related Constants  
+# ================================
+
+# Parent folder for data validation artifacts within the pipeline
+DATA_VALIDATION_DIR_NAME: str = "data_validation"
+
+# Subfolder to store validated (good) data
+DATA_VALIDATION_VALID_DIR: str = "validated"
+
+# Subfolder to store invalid/rejected data
+DATA_VALIDATION_INVALID_DIR: str = "invalid"
+
+# Subfolder to store data drift reports
+DATA_VALIDATION_DRIFT_REPORT_DIR: str = "drift_store"
+
+# Filename for the data drift report (can be YAML or JSON)
+DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = "report.yaml"
 
