@@ -1,70 +1,125 @@
 # ================================
 # 📦 Basic Imports
 # ================================
-import os     # for path operations
-import sys    # for system-level operations (like traceback info in exceptions)
-import numpy as np   # for numerical operations (useful in preprocessing/ML)
-import pandas as pd  # for data manipulation (CSV reading, DataFrame operations)
+import os      # For path operations
+import sys     # For system-level operations (traceback, etc.)
+import numpy as np   # Numerical operations (preprocessing, ML tasks)
+import pandas as pd  # Data manipulation & CSV handling
 
 
 # ================================
 # 🎯 Common Constants for Training Pipeline
 # ================================
-# Column in dataset that the model should predict
-TARGET_COLUMN = "Result"  # Why? Model training requires a label column to predict
+"""
+These constants are shared across the entire ML pipeline.
+"""
 
-# Name of your ML pipeline/project
-PIPELINE_NAME: str = "NetworkSecurity"  # Used in logs, artifacts, and reports
+# Column to be predicted by the ML model
+TARGET_COLUMN: str = "Result"
 
-# Root folder where all artifacts of the pipeline (processed data, models, logs) are stored
-ARTIFACT_DIR: str = "Artifacts"  # Keeps outputs organized and separate from source code
+# ML pipeline/project name (used in logs, artifact folders, S3 paths)
+PIPELINE_NAME: str = "NetworkSecurity"
 
-# Raw data filename (CSV) that your pipeline will ingest
-FILE_NAME: str = "phisingData.csv"  # Ensures consistent file reference across modules
+# Root folder for all pipeline artifacts (data, models, logs, reports)
+ARTIFACT_DIR: str = "Artifacts"
 
-# Names for the train/test split files
-TRAIN_FILE_NAME: str = "train.csv"  # Saved after splitting raw dataset
-TEST_FILE_NAME: str = "test.csv"    # Saved after splitting raw dataset
+# Raw dataset filename
+FILE_NAME: str = "phisingData.csv"
 
-SCHEMA_FILE_PATH = os.path.join("data_schema" , "schema.yaml")
+# Output filenames for train/test splits
+TRAIN_FILE_NAME: str = "train.csv"
+TEST_FILE_NAME: str = "test.csv"
 
+# Path to the YAML schema file defining the dataset structure
+SCHEMA_FILE_PATH: str = os.path.join("data_schema", "schema.yaml")
 
 
 # ================================
 # 💾 Data Ingestion Related Constants
 # ================================
-# MongoDB collection name where raw data will be inserted
-DATA_INGESTION_COLLECTION_NAME: str = "Network_data"  # Used in NetworkDataExtract class
+"""
+Constants specific to the Data Ingestion stage.
+"""
 
-# MongoDB database name
-DATA_INGESTION_DATABASE_NAME: str = "RUDRA1"  # Centralized database name for ingestion
+# MongoDB configuration
+DATA_INGESTION_COLLECTION_NAME: str = "Network_data"
+DATA_INGESTION_DATABASE_NAME: str = "RUDRA1"
 
-# Folder names for organizing ingestion artifacts
-DATA_INGESTION_DIR_NAME: str  = "data_ingestion"            # Parent folder for ingestion stage
-DATA_INGESTION_FEATURE_STORE_DIR: str = "feature_store"     # Folder to store raw feature snapshots
-DATA_INGESTION_INGESTED_DIR: str = "ingested"              # Folder to store train/test splits
+# Folder structure within artifacts for data ingestion
+DATA_INGESTION_DIR_NAME: str = "data_ingestion"
+DATA_INGESTION_FEATURE_STORE_DIR: str = "feature_store"  # Raw snapshot of dataset
+DATA_INGESTION_INGESTED_DIR: str = "ingested"           # Split train/test datasets
 
-# Train/test split ratio
-DATA_INGESTION_TRAIN_TEST_SPLIT_RATION: float = 0.2        # 20% test data, 80% train data
-# Why? Ensures consistency across runs and reproducibility in experiments
+# Train/Test split ratio
+DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2  # 20% test, 80% train
 
 
 # ================================
-# 💾 Data Validation Related Constants  
+# 💾 Data Validation Related Constants
 # ================================
+"""
+Constants specific to Data Validation stage.
+"""
 
-# Parent folder for data validation artifacts within the pipeline
+# Folder structure for data validation artifacts
 DATA_VALIDATION_DIR_NAME: str = "data_validation"
+DATA_VALIDATION_VALID_DIR: str = "validated"         # Valid data
+DATA_VALIDATION_INVALID_DIR: str = "invalid"         # Invalid/rejected data
+DATA_VALIDATION_DRIFT_REPORT_DIR: str = "drift_store"  # Data drift reports
 
-# Subfolder to store validated (good) data
-DATA_VALIDATION_VALID_DIR: str = "validated"
-
-# Subfolder to store invalid/rejected data
-DATA_VALIDATION_INVALID_DIR: str = "invalid"
-
-# Subfolder to store data drift reports
-DATA_VALIDATION_DRIFT_REPORT_DIR: str = "drift_store"
-
-# Filename for the data drift report (can be YAML or JSON)
+# Filename for the data drift report
 DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = "report.yaml"
 
+
+# ================================
+# 💾 Data Transformation Related Constants
+# ================================
+"""
+Constants specific to Data Transformation stage.
+"""
+
+# Folder structure for transformation artifacts
+DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
+DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR: str = "transformed"          # Transformed datasets (.npy)
+DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR: str = "transformed_object" # Preprocessing objects (scalers, encoders, etc.)
+
+# Imputer parameters for missing values
+DATA_TRANSFORMATION_IMPUTER_PARAMS: dict = {
+    "missing_values": np.nan,
+    "n_neighbors": 3,
+    "weights": "uniform",
+}
+
+# File paths for transformed train/test numpy arrays
+DATA_TRANSFORMATION_TRAIN_FILE_PATH: str = "train.npy"
+DATA_TRANSFORMATION_TEST_FILE_PATH: str = "test.npy"
+
+PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
+
+
+# ================================
+# 🤖 Model Trainer Related Constants
+# ================================
+"""
+Constants specific to the Model Training stage.
+"""
+
+# Folder structure for model trainer artifacts
+MODEL_TRAINER_DIR_NAME: str = "model_trainer"
+MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"
+MODEL_TRAINER_TRAINED_MODEL_NAME: str = "model.pkl"
+
+# Model performance expectations
+MODEL_TRAINER_EXPECTED_SCORE: float = 0.6  # Minimum accuracy threshold
+MODEL_TRAINER_OVERFITTING_UNDERFITTING_THRESHOLD: float = 0.05  # Max acceptable train/test deviation
+
+
+# ================================
+# ☁️ Cloud / Deployment Related Constants
+# ================================
+"""
+Constants for cloud storage and deployment.
+"""
+
+# S3 bucket name for storing artifacts and trained models
+TRAINING_BUCKET_NAME: str = "networksecurity"

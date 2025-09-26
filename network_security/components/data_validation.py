@@ -8,6 +8,9 @@ import sys
 import pandas as pd
 from scipy.stats import ks_2samp
 from sqlalchemy import values  # Kolmogorov-Smirnov test
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 
 # -------- Internal Imports --------
 from network_security.exception.exception import NetworkSecurityException
@@ -95,7 +98,7 @@ class DataValidation:
 
                 if pd.api.types.is_numeric_dtype(d1):
                     ks_result = ks_2samp(d1, d2)
-                    p_value = ks_result.pvalue
+                    p_value = ks_result.pvalue    # type: ignore
                     drift_detected = p_value < threshold
                 else:
                     # Simple categorical drift check via normalized value counts
@@ -146,10 +149,10 @@ class DataValidation:
                 logging.error("Schema validation failed for one or both datasets.")
                 return DataValidationArtifact(
                     validation_status=False,
-                    valid_train_file_path=None,
-                    valid_test_file_path=None,
-                    invalid_train_file_path=train_file_path if not valid_train else None,
-                    invalid_test_file_path=test_file_path if not valid_test else None,
+                    valid_train_file_path=None,    # type: ignore
+                    valid_test_file_path=None,   # type: ignore
+                    invalid_train_file_path=train_file_path if not valid_train else None,    # type: ignore
+                    invalid_test_file_path=test_file_path if not valid_test else None,   # type: ignore
                     drift_report_file_path=self.data_validation_config.drift_report_file_path,
                 )
 
@@ -165,8 +168,8 @@ class DataValidation:
                 validation_status=drift_status,
                 valid_train_file_path=self.data_validation_config.valid_train_file_path,
                 valid_test_file_path=self.data_validation_config.valid_test_file_path,
-                invalid_train_file_path=None,
-                invalid_test_file_path=None,
+                invalid_train_file_path=None,    # type: ignore
+                invalid_test_file_path=None,   # type: ignore
                 drift_report_file_path=self.data_validation_config.drift_report_file_path,
             )
         except Exception as e:
