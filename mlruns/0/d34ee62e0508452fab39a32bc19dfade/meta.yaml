@@ -1,0 +1,14 @@
+artifact_uri: file:///D:/my_projects/etl_ml_project/mlruns/0/d34ee62e0508452fab39a32bc19dfade/artifacts
+end_time: 1759128121663
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d34ee62e0508452fab39a32bc19dfade
+run_name: intelligent-dove-145
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759128116777
+status: 3
+tags: []
+user_id: rudra

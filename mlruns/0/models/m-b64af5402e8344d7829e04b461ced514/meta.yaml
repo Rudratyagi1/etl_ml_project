@@ -1,0 +1,10 @@
+artifact_location: file:///D:/my_projects/etl_ml_project/mlruns/0/models/m-b64af5402e8344d7829e04b461ced514/artifacts
+creation_timestamp: 1759128108346
+experiment_id: '0'
+last_updated_timestamp: 1759128116576
+model_id: m-b64af5402e8344d7829e04b461ced514
+model_type: null
+name: model
+source_run_id: 88f6350bbfd94546a311707617d733bf
+status: 2
+status_message: null
