@@ -41,11 +41,11 @@ dagshub.init(repo_owner='rudratyagi777', repo_name='etl_ml_project', mlflow=True
 
 
 class ModelTrainer:
-    def __init__(self , model_trainer_config: ModelTrainerConfig , data_transform_artifact: DataTransformationArtifact ):
+    def __init__(self , model_trainer_config: ModelTrainerConfig , data_transformation_artifact: DataTransformationArtifact ):
         try:
 
             self.model_trainer_config = model_trainer_config
-            self.data_transformation_artifact = data_transform_artifact
+            self.data_transformation_artifact = data_transformation_artifact
             
         except Exception as e:
             raise NetworkSecurityException(e,sys)
