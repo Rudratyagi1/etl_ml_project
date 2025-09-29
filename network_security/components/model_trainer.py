@@ -30,7 +30,7 @@ from sklearn.ensemble import (
 )
 
 import mlflow
-import mlflow.sklearn
+import mlflow.sklearn as ms 
 import dagshub
 dagshub.init(repo_owner='rudratyagi777', repo_name='etl_ml_project', mlflow=True)  #type: ignore
 
@@ -59,7 +59,7 @@ class ModelTrainer:
             mlflow.log_metric("f1_score",f1_score)
             mlflow.log_metric("precision",precision_score)
             mlflow.log_metric("recall",recall_score)
-            ms.log_model(best_model,"model")
+            #ms.log_model(best_model,name="model")
             
 
 

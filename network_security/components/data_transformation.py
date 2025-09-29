@@ -143,6 +143,11 @@ class DataTransformation:
             # Save preprocessing pipeline object
             save_object(self.data_tranformation_config.transformed_object_file_path, preprocessor_object)
 
+            save_object("final_model/preprocessor.pkl", preprocessor_object)
+            
+
+            
+
             # Prepare and return data transformation artifact
             data_transformation_artifact = DataTransformationArtifact(
                 transformed_object_file_path=self.data_tranformation_config.transformed_object_file_path,
