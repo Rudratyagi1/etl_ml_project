@@ -31,6 +31,14 @@ from sklearn.ensemble import (
 
 import mlflow
 import mlflow.sklearn
+import dagshub
+dagshub.init(repo_owner='rudratyagi777', repo_name='etl_ml_project', mlflow=True)  #type: ignore
+
+
+
+
+
+
 
 class ModelTrainer:
     def __init__(self , model_trainer_config: ModelTrainerConfig , data_transform_artifact: DataTransformationArtifact ):
