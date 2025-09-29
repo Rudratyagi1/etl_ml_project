@@ -42,6 +42,8 @@ class TrainingPipelineConfig:
         # Full artifact directory path for this pipeline run
         self.artifact_dir: str = os.path.join(self.artifact_name, timestamp_str)
 
+        self.model_dir=os.path.join("final_model")
+
         # Timestamp string for logging, reports, and model versioning
         self.timestamp: str = timestamp_str
 

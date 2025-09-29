@@ -126,4 +126,4 @@ Constants for cloud storage and deployment.
 """
 
 # S3 bucket name for storing artifacts and trained models
-TRAINING_BUCKET_NAME: str = "networksecurity"
+TRAINING_BUCKET_NAME: str = "networksecurity1135"
