@@ -9,7 +9,8 @@ from network_security.logging.logger import logging
 from network_security.components.data_ingestion import DataIngestion
 from network_security.components.data_validation import DataValidation
 from network_security.components.data_transformation import DataTransformation
-from network_security.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig , DataValidationConfig , DataTransformationConfig
+from network_security.components.model_trainer import ModelTrainer
+from network_security.entity.config_entity import DataIngestionConfig, ModelTrainerConfig, TrainingPipelineConfig , DataValidationConfig , DataTransformationConfig
 
 import sys
 
@@ -38,6 +39,17 @@ if __name__ == "__main__":
         data_transformation_artifact = data_transformation.initiate_data_transformation()
         logging.info("data  Transformation  Completed")
         print(data_transformation_artifact)
+
+
+        logging.info("model_training started")
+        model_trainer_config = ModelTrainerConfig(trainingpipelineconfig)
+        model_trainer = ModelTrainer(model_trainer_config = model_trainer_config , data_transform_artifact=data_transformation_artifact )
+        model_trainer_artifact = model_trainer.initiate_model_trainer()
+
+        logging.info("Model Training artifact created")
+
+    
+
 
 
         
